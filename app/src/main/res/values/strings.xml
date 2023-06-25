@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">RadianCalculator</string>
+    <string name="button">Вычислить</string>
+    <string name="from">из</string>
+    <string name="to">в</string>
+    <string-array name="angle_calc">
+        <item>град</item>
+        <item>радиан</item>
+        <item>тысячная</item>
+        <item>градус</item>
+    </string-array>
+</resources>
