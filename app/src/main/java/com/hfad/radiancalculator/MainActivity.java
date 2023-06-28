@@ -46,9 +46,19 @@ public class MainActivity extends AppCompatActivity {
             lastValues.add(String.valueOf(calcAngle));
             StringBuilder lastValuesFormatted = new StringBuilder();
             for (String lastValue : lastValues) {
-                lastValuesFormatted.append(lastValue).append('\n');
+                lastValuesFormatted.append(lastValue)
+                        .append(" из ")
+                        .append(String.valueOf(chooseAngle.getSelectedItem()))
+                        .append(" в ")
+                        .append(String.valueOf(chooseAngleOther.getSelectedItem()))
+                        .append('\n');
             }
-            lastValuesText.setText(lastValuesFormatted);
+            if (lastValues.size() > 4) {
+                lastValues.remove(0);
+                lastValuesText.setText(lastValuesFormatted);
+            } else {
+                lastValuesText.setText(lastValuesFormatted);
+            }
         }
     }
 }
