@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private AngleChooseType chooseAngleType = new AngleChooseType();
-
+    private List<String> lastValues = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         String angleType = String.valueOf(chooseAngle.getSelectedItemId());
         String angleTypeOther = String.valueOf(chooseAngleOther.getSelectedItemId());
 
+        TextView lastValuesText = (TextView) findViewById(R.id.lastValues);
+
+
         String degree = String.valueOf(inputDegree.getText());
         TextView errorText = (TextView) findViewById(R.id.error);
         if (degree.isEmpty()) {
@@ -36,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
             chooseAngleType.setAngleValue(Integer.parseInt(angleType), degree);
             double calcAngle = chooseAngleType.getChooseAngle(Integer.parseInt(angleTypeOther));
             outputDegree.setText(String.valueOf(calcAngle));
+            lastValues.add(String.valueOf(calcAngle));
+            StringBuilder lastValuesFormatted = new StringBuilder();
+            for (String lastValue : lastValues) {
+                lastValuesFormatted.append(lastValue).append('\n');
+            }
+            lastValuesText.setText(lastValuesFormatted);
         }
     }
 }
